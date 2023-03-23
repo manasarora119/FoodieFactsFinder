@@ -1,0 +1,92 @@
+.progress-bar {
+    padding: 0;
+  }
+  
+  .progress {
+    width: 50px;
+  }
+  
+  .mat-input-element {
+    font-size: medium;
+    font-weight: 200;
+  }
+  
+  #fileInput {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+  }
+  
+  .mat-toolbar-single-row {
+    height: auto !important;
+    background: transparent;
+    padding: 0;
+  }
+  
+  .mat-toolbar-single-row button {
+    width: 100px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .message {
+    background-color: #ddd;
+    padding: 15px;
+    color: #333;
+    border: #aaa solid 1px;
+    border-radius: 4px;
+    margin: 15px 0;
+  }
+  
+  .preview {
+    max-width: 200px;
+    vertical-align: middle;
+  }
+  .flex-parent{
+    display: flex;
+  }
+  .flex-item{
+    flex-direction: row;
+  }
+  .flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: rgb(0, 0, 0);
+  }
+  .high{
+    background-color: rgb(218, 4, 4)!important; 
+  }
+  .medium{
+    background-color: rgb(216, 120, 10)!important; 
+
+  }
+  .low{
+    background-color: rgb(24, 165, 43) !important; 
+
+  }
+  .flex-container > div {
+    background-color: #f1f1f1;
+    width: 100px;
+    text-align: center;
+    
+    font-weight: bold;
+    color: white;
+    margin: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px
+  }
+  
+  .list-card {
+    margin-top: 20px;
+  }
+  
+  .list-item {
+    margin-bottom: 20px;
+  }
