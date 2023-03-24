@@ -16,7 +16,10 @@ import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 export class AppComponent implements OnInit {
   
   
-  @ViewChild('chartTransportationVariableCost', { static: false }) chartEl:ElementRef ;
+  @ViewChild('chart1', { static: false }) chartEl1:ElementRef<any> ;
+  @ViewChild('chart2', { static: false }) chartEl2:ElementRef ;
+   @ViewChild('chart3', { static: false }) chartEl3:ElementRef ;
+ 
   generatedImage: string;
   allData: any;
   allNutrition: any;
@@ -35,11 +38,11 @@ export class AppComponent implements OnInit {
         type: 'pie'
     },
     title: {
-        text: 'Browser market shares. January, 2022',
+        text: 'Dish 1',
         align: 'left'
     },
     subtitle: {
-        text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>',
+        text: 'Dish1',
         align: 'left'
     },
 
@@ -70,240 +73,10 @@ export class AppComponent implements OnInit {
         {
             name: 'Browsers',
             colorByPoint: true,
-            data: [
-                {
-                    name: 'Chrome',
-                    y: 61.04,
-                    drilldown: 'Chrome'
-                },
-                {
-                    name: 'Safari',
-                    y: 9.47,
-                    drilldown: 'Safari'
-                },
-                {
-                    name: 'Edge',
-                    y: 9.32,
-                    drilldown: 'Edge'
-                },
-                {
-                    name: 'Firefox',
-                    y: 8.15,
-                    drilldown: 'Firefox'
-                },
-                {
-                    name: 'Other',
-                    y: 11.02,
-                    drilldown: null
-                }
-            ]
+            data: []
         }
     ],
-    drilldown: {
-        series: [
-            {
-                name: 'Chrome',
-                id: 'Chrome',
-                data: [
-                    [
-                        'v97.0',
-                        36.89
-                    ],
-                    [
-                        'v96.0',
-                        18.16
-                    ],
-                    [
-                        'v95.0',
-                        0.54
-                    ],
-                    [
-                        'v94.0',
-                        0.7
-                    ],
-                    [
-                        'v93.0',
-                        0.8
-                    ],
-                    [
-                        'v92.0',
-                        0.41
-                    ],
-                    [
-                        'v91.0',
-                        0.31
-                    ],
-                    [
-                        'v90.0',
-                        0.13
-                    ],
-                    [
-                        'v89.0',
-                        0.14
-                    ],
-                    [
-                        'v88.0',
-                        0.1
-                    ],
-                    [
-                        'v87.0',
-                        0.35
-                    ],
-                    [
-                        'v86.0',
-                        0.17
-                    ],
-                    [
-                        'v85.0',
-                        0.18
-                    ],
-                    [
-                        'v84.0',
-                        0.17
-                    ],
-                    [
-                        'v83.0',
-                        0.21
-                    ],
-                    [
-                        'v81.0',
-                        0.1
-                    ],
-                    [
-                        'v80.0',
-                        0.16
-                    ],
-                    [
-                        'v79.0',
-                        0.43
-                    ],
-                    [
-                        'v78.0',
-                        0.11
-                    ],
-                    [
-                        'v76.0',
-                        0.16
-                    ],
-                    [
-                        'v75.0',
-                        0.15
-                    ],
-                    [
-                        'v72.0',
-                        0.14
-                    ],
-                    [
-                        'v70.0',
-                        0.11
-                    ],
-                    [
-                        'v69.0',
-                        0.13
-                    ],
-                    [
-                        'v56.0',
-                        0.12
-                    ],
-                    [
-                        'v49.0',
-                        0.17
-                    ]
-                ]
-            },
-            {
-                name: 'Safari',
-                id: 'Safari',
-                data: [
-                    [
-                        'v15.3',
-                        0.1
-                    ],
-                    [
-                        'v15.2',
-                        2.01
-                    ],
-                    [
-                        'v15.1',
-                        2.29
-                    ],
-                    [
-                        'v15.0',
-                        0.49
-                    ],
-                    [
-                        'v14.1',
-                        2.48
-                    ],
-                    [
-                        'v14.0',
-                        0.64
-                    ],
-                    [
-                        'v13.1',
-                        1.17
-                    ],
-                    [
-                        'v13.0',
-                        0.13
-                    ],
-                    [
-                        'v12.1',
-                        0.16
-                    ]
-                ]
-            },
-            {
-                name: 'Edge',
-                id: 'Edge',
-                data: [
-                    [
-                        'v97',
-                        6.62
-                    ],
-                    [
-                        'v96',
-                        2.55
-                    ],
-                    [
-                        'v95',
-                        0.15
-                    ]
-                ]
-            },
-            {
-                name: 'Firefox',
-                id: 'Firefox',
-                data: [
-                    [
-                        'v96.0',
-                        4.17
-                    ],
-                    [
-                        'v95.0',
-                        3.33
-                    ],
-                    [
-                        'v94.0',
-                        0.11
-                    ],
-                    [
-                        'v91.0',
-                        0.23
-                    ],
-                    [
-                        'v78.0',
-                        0.16
-                    ],
-                    [
-                        'v52.0',
-                        0.15
-                    ]
-                ]
-            }
-        ]
-    
-  }
+   
   };
   title = 'ML';
   selectedFiles?: FileList;
@@ -403,10 +176,66 @@ export class AppComponent implements OnInit {
                 if(nutrition?.body?.nutritional_info?.dailyIntakeReference){
                 this.allNutrition = Object.values(nutrition?.body?.nutritional_info?.dailyIntakeReference)
                 }
+                let se:any=[];
+                if(nutrition?.body?.nutritional_info_per_item)
+                  for (const key in nutrition?.body?.nutritional_info_per_item) {
+                    se.push([]);
+                      for (const key2 in nutrition?.body?.nutritional_info_per_item[key].nutritional_info.dailyIntakeReference) {
+                        const element2 = nutrition?.body?.nutritional_info_per_item[key].nutritional_info.dailyIntakeReference[key2];
+                          se[key].push( {
+                            name: element2['label'],
+                            drilldown: 
+                             element2['label'],
+                           y: element2['percent']
+                            
+                          })
+                      }
+                      
+                   }
+                   
               
                 setTimeout(() => {
-                  this.highcharts.createChart(this.chartEl?.nativeElement, this.myOptions);
-                  console.log(this.chartEl, 'this.chartEl');
+                  for (const key in se) {
+                    switch(key) {
+                      case '0':
+                        this.myOptions.series[0].data=se[key]
+                        
+                         this.myOptions.title.text ='Dish 1'
+                         this.myOptions.subtitle.text ='Dish 1'
+                          
+                        this.highcharts.createChart(this.chartEl1?.nativeElement, this.myOptions);
+                        break;
+                      case '1':
+                        this.myOptions.title.text ='Dish 2'
+                        this.myOptions.subtitle.text ='Dish 2'
+                          
+                        this.myOptions.series[0].data=se[key]
+                        this.highcharts.createChart(this.chartEl2?.nativeElement, this.myOptions);
+
+                        break;
+
+                        case '2':
+                          this.myOptions.title.text ='Dish 3'
+                          
+                          this.myOptions.subtitle.text ='Dish 3'
+                          
+                      
+                          this.myOptions.series[0].data=se[key]
+                          this.highcharts.createChart(this.chartEl3?.nativeElement, this.myOptions);
+  
+                          break;
+                      default:
+                        // code block
+                    }
+                    
+                  }
+                  // console.log(this.myOptions, 'this.myOptions');
+                  // this.myOptions.series[0].data=se[0]
+
+                  // this.highcharts.createChart(this.chartEl1?.nativeElement, this.myOptions);
+                  // this.highcharts.createChart(this.chartEl2?.nativeElement, this.myOptions);
+                  // this.highcharts.createChart(this.chartEl3?.nativeElement, this.myOptions);
+                  // console.log(this.chartEl, 'this.chartEl');
            
                 }, 1500);
                },
@@ -574,7 +403,6 @@ this.selectedFiles =s;
 })
 export class DialogContentExampleDialog {
   favoriteSeason: any;
-  // seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
   constructor(private dialogRef : MatDialogRef<any>,
     private _formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: {values:any ,allData:any ,segmentationResults:any}
@@ -593,8 +421,6 @@ export class DialogContentExampleDialog {
       orders: new FormArray([])
     });
     this.addCheckboxesToForm()
-    console.log(this.data , 'data');
-    
   }
   private addCheckboxesToForm() {
     this.data.values.forEach((val :any,id:any)=>{
@@ -606,8 +432,6 @@ export class DialogContentExampleDialog {
     this.webData.forEach(() => this.ordersFormArray.push(new FormControl(false)));
   }
   confirm(){
-    
-    
      const selectedOrderIds = this.form.value.orders
       .map((checked:any, i:any) => checked ? this.webData[i].id : null)
       .filter((v:any) => v !== null);
@@ -616,17 +440,11 @@ export class DialogContentExampleDialog {
     {
       "imageId": this.data.allData.imageId,
       "confirmedClass": 
-        result.map((a:any) => a.id)
-        ,
-      "source": result.map((a:any) => 'logmeal')
-       ,
+        result.map((a:any) => a.id),
+      "source": result.map((a:any) => 'logmeal'),
       "food_item_position":    
       [...new Set(  result.map((a:any) => a.food_item_position))]
-      
-      
     }
-      this.dialogRef.close(obj);
-  
-        
+       this.dialogRef.close(obj);
   }
 }

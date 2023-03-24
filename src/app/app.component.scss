@@ -59,6 +59,18 @@
     flex-wrap: nowrap;
     background-color: rgb(0, 0, 0);
   }
+  .flex-container2{
+    display: flex;
+    // width: 90vw;
+    // flex-wrap: nowrap;
+    
+  flex-flow: row wrap;
+    .flex-ss{
+      padding: 9px 20px;
+      overflow: unset;
+
+    }
+  }
   .high{
     background-color: rgb(218, 4, 4)!important; 
   }
