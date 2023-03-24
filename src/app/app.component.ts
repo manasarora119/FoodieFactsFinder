@@ -593,7 +593,8 @@ export class DialogContentExampleDialog {
       orders: new FormArray([])
     });
     this.addCheckboxesToForm()
-
+    console.log(this.data , 'data');
+    
   }
   private addCheckboxesToForm() {
     this.data.values.forEach((val :any,id:any)=>{

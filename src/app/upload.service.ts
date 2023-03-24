@@ -11,12 +11,14 @@ import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common
 export class UploadService {
   constructor(private http: HttpClient) { }
 
-
+    token = 'd011e288846464ded99871d335ac1804fe7d0b9b'
+    old: 'Bearer 60b7066beaa4a5e33d8d3ebbec837d665cba7a75';
+     
   confirmDish(body:any): Observable<any> {
   
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer 60b7066beaa4a5e33d8d3ebbec837d665cba7a75',
+        Authorization: 'Bearer d011e288846464ded99871d335ac1804fe7d0b9b',
       }),
     };
     const req = new HttpRequest('POST', `https://api.logmeal.es/v2/image/confirm/dish/v1.0?language=eng`, body, {
@@ -45,7 +47,7 @@ export class UploadService {
     
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer 60b7066beaa4a5e33d8d3ebbec837d665cba7a75',
+        Authorization: 'Bearer d011e288846464ded99871d335ac1804fe7d0b9b',
       }),
     };
     const req = new HttpRequest('POST', `https://api.logmeal.es/v2/nutrition/recipe/nutritionalInfo/v1.0?language=eng`, body, {
@@ -526,7 +528,7 @@ export class UploadService {
     formData.append('image', image);
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer 60b7066beaa4a5e33d8d3ebbec837d665cba7a75',
+        Authorization: 'Bearer d011e288846464ded99871d335ac1804fe7d0b9b',
       }),
     };
     const req = new HttpRequest('POST', `https://api.logmeal.es/v2/image/segmentation/complete/v1.0?language=eng`, formData, {
