@@ -201,13 +201,13 @@ export class AppComponent implements OnInit {
                         this.myOptions.series[0].data=se[key]
                         
                          this.myOptions.title.text ='Dish 1'
-                         this.myOptions.subtitle.text ='Dish 1'
+                         this.myOptions.subtitle.text =nutrition?.body?.foodName[0]
                           
                         this.highcharts.createChart(this.chartEl1?.nativeElement, this.myOptions);
                         break;
                       case '1':
                         this.myOptions.title.text ='Dish 2'
-                        this.myOptions.subtitle.text ='Dish 2'
+                        this.myOptions.subtitle.text =nutrition?.body?.foodName[1]
                           
                         this.myOptions.series[0].data=se[key]
                         this.highcharts.createChart(this.chartEl2?.nativeElement, this.myOptions);
@@ -217,7 +217,7 @@ export class AppComponent implements OnInit {
                         case '2':
                           this.myOptions.title.text ='Dish 3'
                           
-                          this.myOptions.subtitle.text ='Dish 3'
+                          this.myOptions.subtitle.text =nutrition?.body?.foodName[2]
                           
                       
                           this.myOptions.series[0].data=se[key]
@@ -341,6 +341,8 @@ this.selectedFiles =s;
       this.uploadService.upload(file).subscribe(
         (event: any) => {
           this.allData=event?.body
+          console.log(this.allData ,'this.allData');
+          
           let segmentation_results :any= [];
           this.allData?.segmentation_results.forEach((element:any) => {
             if(element.recognition_results){

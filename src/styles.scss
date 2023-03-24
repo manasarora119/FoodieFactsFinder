@@ -3,7 +3,12 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 
-  background-image: url("assets/aaaa.jpg"); }
+  background-image: url("assets/r1.jpeg");
+
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  // background-position: center;
+}
 .header-img{
   width: 140px;
 }
@@ -11,6 +16,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 .dish{
   font-weight: bold;
   font-size: 16px;
+}
+::ng-deep .highcharts-subtitle{
+  text-transform: capitalize;
+  font-weight: bold;
 }
 
 .mat-dialog-container{
