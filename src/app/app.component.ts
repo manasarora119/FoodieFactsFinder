@@ -337,6 +337,14 @@ export class AppComponent implements OnInit {
     this.progressInfos = [];
     this.selectedFileNames = [];
     this.selectedFiles = event.target.files;
+    if(!(event.target.files[0].name.includes(
+      "jpeg") ||(event.target.files[0].name.includes(
+        "jpg") ))
+    ) {
+      alert( "Please upload only file with extention .jpg or .jpeg")
+      return;
+    }    
+   
 
     this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {
@@ -373,7 +381,7 @@ export class AppComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {
         data: {values:values ,allData :allData ,segmentationResults: segmentation_results} ,
 
-      height: '320px',
+      height: '420px',
       width: '600px',
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -391,10 +399,10 @@ export class AppComponent implements OnInit {
             }
             this.uploadService.getNutritionInfo(body).subscribe(
               (nutrition: any) => {
-                console.log(nutrition ,'getNutritionInfo info ++ + + ');
               
+                if(nutrition?.body?.nutritional_info?.dailyIntakeReference){
                 this.allNutrition = Object.values(nutrition?.body?.nutritional_info?.dailyIntakeReference)
-              console.log( this.allNutrition,' this.allNutrition');
+                }
               
                 setTimeout(() => {
                   this.highcharts.createChart(this.chartEl?.nativeElement, this.myOptions);
@@ -513,18 +521,18 @@ this.selectedFiles =s;
             }
             segmentation_results.push(...element.recognition_results)
           });
-          segmentation_results= segmentation_results.sort((a:any,b:any)=> b['prob']-a['prob'])
-          const slicedArray = segmentation_results.slice(0, 5);
-          if(slicedArray){
-            let data=slicedArray;
+          // segmentation_results= segmentation_results.sort((a:any,b:any)=> b['prob']-a['prob'])
+          // const slicedArray = segmentation_results.slice(0, 5);
+          if(segmentation_results){
+            let data=segmentation_results;
             let values:any=[];
             
             data.forEach((element:any) => {
               values.push(element.name)
             });
-          
+            if(values?.length){
             this.openDialog(values,this.allData ,segmentation_results);
-
+            }
           }
           // if (event.type === HttpEventType.UploadProgress) {
           //   this.progressInfos[idx].value = Math.round(
@@ -611,11 +619,13 @@ export class DialogContentExampleDialog {
         ,
       "source": result.map((a:any) => 'logmeal')
        ,
-      "food_item_position": 
+      "food_item_position":    
       [...new Set(  result.map((a:any) => a.food_item_position))]
       
       
     }
-        this.dialogRef.close(obj);
+      this.dialogRef.close(obj);
+  
+        
   }
 }

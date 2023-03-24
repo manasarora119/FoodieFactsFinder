@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Confirm your Dish</h2>
 
-<label id="example-radio-group-label">Pick your bellow dishes</label>
+<label id="example-radio-group-label">Pick your below dishes</label>
 <!-- <mat-radio-group
   aria-labelledby="example-radio-group-label"
   class="example-radio-group"
@@ -15,17 +15,10 @@
 <form [formGroup]="form">
   <label formArrayName="orders" *ngFor="let order of ordersFormArray.controls; let i = index">
   
-    <ng-container *ngIf="i==0"  >
-      <mat-checkbox [formControlName]="i"  class="first-checkbox">  
+      <mat-checkbox [formControlName]="i"  >  
         {{webData[i].name}}
       </mat-checkbox>
-    </ng-container>
     
-    <ng-container *ngIf="i>=1">
-    <mat-checkbox [formControlName]="i">  
-      {{webData[i].name}}
-    </mat-checkbox>
-    </ng-container>
     <br/>
   </label>
 <br/>
@@ -46,5 +39,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button cdkFocusInitial (click)="confirm()">Confirm</button>
+  <button mat-button cdkFocusInitial mat-dialog-close (click)="confirm()">Confirm</button>
 </mat-dialog-actions>
