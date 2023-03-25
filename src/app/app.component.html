@@ -385,6 +385,14 @@ Reset
 
 <div *ngIf="result">
   <div class="flex-container">
+    <div class="energy" *ngIf="nutrition?.calories">
+      Energy
+  <br>
+ 
+  {{nutrition?.calories | number}} 
+  <br>
+  kcal
+    </div>
     <div  *ngFor="let item of allNutrition" [ngClass]="getClassOf(item?.level)" >
 
   {{item.label}} 

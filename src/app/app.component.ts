@@ -8,7 +8,6 @@ import { HighChartsService } from './highcharts.service';
 import {WebcamImage} from 'ngx-webcam';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 
-import * as Highcharts from 'highcharts';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -24,6 +23,7 @@ export class AppComponent implements OnInit {
   generatedImage: string;
   allData: any;
   allNutrition: any;
+  nutrition: any;
   ngAfterViewInit() {
      }
   type='ss';
@@ -186,7 +186,9 @@ window.location.reload();
             }
             this.uploadService.getNutritionInfo(body).subscribe(
               (nutrition: any) => {
-              
+               this.nutrition=nutrition?.body?.nutritional_info;
+               console.log(this.nutrition , 'nutrition + + + ');
+               
                 this.myOptions.series[0].data=[];
                 if(nutrition?.body?.nutritional_info?.dailyIntakeReference){
                 this.allNutrition = Object.values(nutrition?.body?.nutritional_info?.dailyIntakeReference)
