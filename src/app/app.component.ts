@@ -8,6 +8,7 @@ import { HighChartsService } from './highcharts.service';
 import {WebcamImage} from 'ngx-webcam';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 
+import * as Highcharts from 'highcharts';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -97,12 +98,13 @@ export class AppComponent implements OnInit {
   }
   reset(){
     console.log('reset');
-    this.result=false;
-    this.message = [];
-    this.progressInfos = [];
-    this.selectedFileNames = [];
-    this.selectedFiles = undefined;
+    // this.result=false;
+    // this.message = [];
+    // this.progressInfos = [];
+    // this.selectedFileNames = [];
+    // this.selectedFiles = undefined;
 
+window.location.reload();
     
   }
   selectFiles(event: any): void {
@@ -128,6 +130,13 @@ export class AppComponent implements OnInit {
         reader.onload = (e: any) => {
           this.previews.push(e.target.result);
         };
+        console.log( this.previews, 'preview +++ + + ');
+        var output:any = document.getElementById('output');
+      output.src = URL.createObjectURL(this.selectedFiles[0]);
+      output.onload = function() {
+        URL.revokeObjectURL(output.src) // free memory
+      }
+
 
         reader.readAsDataURL(this.selectedFiles[i]);
 
@@ -149,8 +158,8 @@ export class AppComponent implements OnInit {
   
   }
 
+
   openDialog(values?:any[],allData?:any , segmentation_results?:any) {
-    console.log(values,'values');
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {
         data: {values:values ,allData :allData ,segmentationResults: segmentation_results} ,
 
@@ -160,7 +169,12 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       console.log(result, 'result');
-      
+      // this.result=false;
+    this.message = [];
+    this.progressInfos = [];
+    this.selectedFileNames = [];
+    this.selectedFiles = undefined;
+    
       this.uploadService.confirmDish(result).subscribe(
         (res: any) => {
           console.log(res , 'res confirm dish');
@@ -173,6 +187,7 @@ export class AppComponent implements OnInit {
             this.uploadService.getNutritionInfo(body).subscribe(
               (nutrition: any) => {
               
+                this.myOptions.series[0].data=[];
                 if(nutrition?.body?.nutritional_info?.dailyIntakeReference){
                 this.allNutrition = Object.values(nutrition?.body?.nutritional_info?.dailyIntakeReference)
                 }
@@ -320,6 +335,7 @@ this.selectedFiles =s;
    
     this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {
+      
       const numberOfFiles = this.selectedFiles.length;
       for (let i = 0; i < numberOfFiles; i++) {
         const reader = new FileReader();
@@ -327,8 +343,9 @@ this.selectedFiles =s;
         reader.onload = (e: any) => {
           this.previews.push(e.target.result);
         };
-
+     
         reader.readAsDataURL(this.selectedFiles[i]);
+       
 
         this.selectedFileNames.push(this.selectedFiles[i].name);
       }
@@ -338,6 +355,7 @@ this.selectedFiles =s;
     
     this.progressInfos[idx] = { value: 0, fileName: file.name };
     if (file) {
+      
       this.uploadService.upload(file).subscribe(
         (event: any) => {
           this.allData=event?.body

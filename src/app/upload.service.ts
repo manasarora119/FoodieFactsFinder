@@ -13,7 +13,7 @@ export class UploadService {
 
     token = 'd011e288846464ded99871d335ac1804fe7d0b9b'
     od='60b7066beaa4a5e33d8d3ebbec837d665cba7a75'
-    old= 'Bearer 1593dd3b9d70506dcc1050bcca938eeae955c631 ';
+    old= 'Bearer c213a80aee1b2f062d94fee16e2a0c7beec1cc50';
     new ='1593dd3b9d70506dcc1050bcca938eeae955c631'
      
   confirmDish(body:any): Observable<any> {
